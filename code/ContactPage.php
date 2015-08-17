@@ -5,7 +5,8 @@ class ContactPage extends Page {
     private static $db = array(
         'ToEmail'=> 'Varchar(255)',
 		'FromEmail'=> 'Varchar(255)',
-		'FromName'=> 'Varchar(255)'
+		'FromName'=> 'Varchar(255)',
+		'ContactDetails'=> 'HTMLText'
     );
 
     private static $has_many = array(
@@ -16,10 +17,15 @@ class ContactPage extends Page {
 	
         $fields = parent::getCMSFields();
 		
+		// ContactDetails tab
+		$fields->addFieldToTab('Root.ContactDetails', new HTMLEditorField('ContactDetails', 'ContactDetails'));
+		
+		// Emails tab
 		$fields->addFieldToTab('Root.Emails', new TextareaField('ToEmail', '"To" Email<br/><em>Email addresses to deliver form submissions to. Can be comma-separated list.</em>'));
 		$fields->addFieldToTab('Root.Emails', new TextField('FromEmail', '"From" & "Reply-to" Email<br/><em>Displayed in form submission email.</em>'));
 		$fields->addFieldToTab('Root.Emails', new TextField('FromName', 'From name<br/><em>Displayed in form submission email. Defaults to "'.SiteConfig::current_site_config()->Title.' contact form".</em>'));
 		
+		// Submissions tab
         $GridFieldConfig = GridFieldConfig_RecordEditor::create();
         $SubmissionsField = new GridField(
             'Submissions',
@@ -30,6 +36,7 @@ class ContactPage extends Page {
         $fields->addFieldToTab('Root.Submissions', $SubmissionsField);
 		
         return $fields;
+		
     }
 
 

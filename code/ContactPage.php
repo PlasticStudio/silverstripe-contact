@@ -18,7 +18,7 @@ class ContactPage extends Page {
         $fields = parent::getCMSFields();
 		
 		// ContactDetails tab
-		$fields->addFieldToTab('Root.ContactDetails', new HTMLEditorField('ContactDetails', 'ContactDetails'));
+		$fields->addFieldToTab('Root.ContactDetails', new HTMLEditorField('ContactDetails', 'Contact details'));
 		
 		// Emails tab
 		$fields->addFieldToTab('Root.Emails', new TextareaField('ToEmail', '"To" Email<br/><em>Email addresses to deliver form submissions to. Can be comma-separated list.</em>'));

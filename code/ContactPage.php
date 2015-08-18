@@ -123,7 +123,7 @@ class ContactPage_Controller extends Page_Controller {
 			$FromName = $this->FromName;
 		}
 		else{
-			$FromName = SiteConfig::current_site_config()->Title.' contact form';
+			$FromName = $this->SiteConfig()->Title.' contact form';
 		}
 
 		$from = $FromName . ' <' . $this->FromEmail . '>';

@@ -6,7 +6,8 @@ class ContactPage extends Page {
         'ToEmail'=> 'Varchar(255)',
 		'FromEmail'=> 'Varchar(255)',
 		'FromName'=> 'Varchar(255)',
-		'ContactDetails'=> 'HTMLText'
+		'ContactDetails'=> 'HTMLText',
+		'OnCompletionMessage'=> 'HTMLText'
     );
 
     private static $has_many = array(
@@ -35,6 +36,9 @@ class ContactPage extends Page {
         );
         $fields->addFieldToTab('Root.Submissions', $SubmissionsField);
 		
+		// OnCompletion tab
+		$fields->addFieldToTab('Root.OnCompletion', new HTMLEditorField('OnCompletionMessage', 'Message to show after form submission'));
+		
         return $fields;
 		
     }
@@ -59,6 +63,9 @@ class ContactPage_Controller extends Page_Controller {
 	}
 	
 	function ContactForm(){
+	
+		$params = $this->getRequest()->params();
+		if( $params['ID'] == 'submitted' ) return $this->OnCompletionMessage;
 	
 		$fields = new FieldList(
 			new TextField('Name', 'Name'),
@@ -91,7 +98,7 @@ class ContactPage_Controller extends Page_Controller {
 		// send notification email to admin
 		$this->EmailAdmin($submission);
 		
-        $this->redirectBack();
+        $this->redirect($this->Link().'ContactForm/submitted');
     }
 	
 	/***

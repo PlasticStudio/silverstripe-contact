@@ -51,7 +51,8 @@ class ContactPage extends Page {
 class ContactPage_Controller extends Page_Controller { 
 
     private static $allowed_actions = array(
-		'ContactForm'
+		'ContactForm',
+		'submitted'
 	);
 
     public function init(){
@@ -59,13 +60,22 @@ class ContactPage_Controller extends Page_Controller {
     }
 	
 	function Form(){
-		return $this->ContactForm();
+		
+		$params = $this->request->params();
+		
+		if($params['Action'] == 'submitted'){
+		
+			return $this->OnCompletionMessage;
+			
+		}else{
+		
+			return $this->ContactForm();
+			
+		}
+		
 	}
 	
 	function ContactForm(){
-	
-		$params = $this->getRequest()->params();
-		if( $params['ID'] == 'submitted' ) return $this->OnCompletionMessage;
 	
 		$fields = new FieldList(
 			new TextField('Name', 'Name'),
@@ -98,7 +108,7 @@ class ContactPage_Controller extends Page_Controller {
 		// send notification email to admin
 		$this->EmailAdmin($submission);
 		
-        $this->redirect($this->Link().'ContactForm/submitted');
+        $this->redirect($this->Link().'submitted');
     }
 	
 	/***

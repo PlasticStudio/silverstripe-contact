@@ -118,11 +118,18 @@ class ContactPage_Controller extends Page_Controller {
 	* Send email
 	***/
 	function EmailAdmin($submission){
+	
+		if( isset($this->FromName) ){
+			$FromName = $this->FromName;
+		}
+		else{
+			$FromName = SiteConfig::current_site_config()->Title.' contact form';
+		}
 
-		$from = $this->FromName . ' <' . $this->FromEmail . '>';
+		$from = $FromName . ' <' . $this->FromEmail . '>';
 		$to = $this->ToEmail;
 		//$to = Email::setAdminEmail();
-		$subject = 'A new submission has been received from '.$this->FromName;
+		$subject = 'A new submission has been received from '.$FromName;
 		$body = '';
 		
 		$email = new Email($from, $to, $subject, $body);

@@ -63,7 +63,7 @@ class ContactPage_Controller extends Page_Controller {
 		$fields = new FieldList(
 			new TextField('Name', 'Name'),
 			new EmailField('Email', 'Email'),
-			new TextField('Phone', 'Contact Number'),
+			new TextField('Phone', 'Phone'),
 			new TextareaField('Message', 'Message'),
 			new HiddenField('ContactPageID', null, $this->ID)
 		);

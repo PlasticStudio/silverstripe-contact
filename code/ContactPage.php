@@ -119,7 +119,7 @@ class ContactPage_Controller extends Page_Controller {
 	***/
 	function EmailAdmin($submission){
 	
-		if( isset($this->FromName) ){
+		if( !empty($this->FromName) ){
 			$FromName = $this->FromName;
 		}
 		else{

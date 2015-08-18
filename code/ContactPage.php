@@ -13,6 +13,9 @@ class ContactPage extends Page {
     private static $has_many = array(
         'Submissions' => 'ContactFormSubmission'
     );
+	
+	static $description = 'Basic contact page';
+	static $icon = CONTACT_DIR.'images/contact-page';
 
     function getCMSFields(){
 	

@@ -119,7 +119,7 @@ class ContactPage_Controller extends Page_Controller {
 	***/
 	function EmailAdmin($submission){
 
-		$from = $this->FromName . ' <' . $this->FromAddress . '>';
+		$from = $this->FromName . ' <' . $this->FromEmail . '>';
 		$to = $this->ToEmail;
 		//$to = Email::setAdminEmail();
 		$subject = 'A new submission has been received from '.$this->FromName;

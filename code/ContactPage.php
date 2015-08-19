@@ -7,8 +7,8 @@ class ContactPage extends Page {
 		'FromEmail'=> 'Varchar(255)',
 		'FromName'=> 'Varchar(255)',
 		'ContactDetails'=> 'HTMLText',
-		'OnCompletionMessage'=> 'HTMLText',
-		'LatLong'=> 'Varchar(255)'
+		'OnCompletionMessage'=> 'HTMLText'/*,
+		'LatLong'=> 'Varchar(255)'*/
     );
 
     private static $has_many = array(
@@ -23,7 +23,7 @@ class ContactPage extends Page {
         $fields = parent::getCMSFields();
 		
 		// ContactDetails tab
-		$fields->addFieldToTab('Root.ContactDetails', new TextField('LatLong', 'Lat/Long coordinates<br/><em>For Google map</em>'));
+		//$fields->addFieldToTab('Root.ContactDetails', new TextField('LatLong', 'Lat/Long coordinates<br/><em>For Google map</em>'));
 		$fields->addFieldToTab('Root.ContactDetails', new HTMLEditorField('ContactDetails', 'Contact details'));
 		
 		// Emails tab

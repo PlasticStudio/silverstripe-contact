@@ -1,6 +1,9 @@
 {
 	"name": "plasticstudio/silverstripe-contact",
+	"type": "silverstripe-module",
 	"description": "Basic contact page for SilverStripe",
+	"keywords": ["silverstripe"],
+	"license": "BSD-3-Clause",
 	"require": {
 		"silverstripe/cms": "~3.1",
 		"silverstripe/framework": "~3.1"
@@ -8,5 +11,10 @@
 	"config": {
 		"process-timeout": 600
 	},
+	"extra": {
+        "installer-paths": {
+            "{$name}": ["vendor/package"]
+        }
+    },
 	"minimum-stability": "dev"
 }

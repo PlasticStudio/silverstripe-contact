@@ -19,19 +19,19 @@ class ContactFormSubmission extends DataObject {
 		'Email' => 'Email',
 		'Phone' => 'Phone'
     );
-	
+
 	function getCMSFields(){
-	
+
         $fields = new FieldList(
 			new TextField('Name', 'Name'),
 			new TextField('Email', 'Email'),
 			new TextField('Phone', 'Phone'),
 			new TextareaField('Message', 'Message')
 		);
-		
+
         return $fields;
     }
-	
+
 	function FormattedCreated(){
 		return date('d M Y (h:ia)', strtotime($this->Created));
 		return $this->Created;
